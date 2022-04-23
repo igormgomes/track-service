@@ -1,0 +1,36 @@
+service: track-service
+
+plugins:
+  - serverless-bundle
+  - serverless-pseudo-parameters
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  memorySize: 256
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  environment:
+    TRACK_TABLE_NAME: ${self:custom.TrackTable.name}
+  iamRoleStatements:
+    -  ${file(iam/TrackTableIAM.yml):TrackTableIAM}
+
+resources:
+  Resources:
+    TrackTable: ${file(resources/TrackTable.yml):TrackTable}
+
+functions:
+  createTrack:
+    handler: src/handlers/createTrack.handler
+    events:
+      - http:
+          method: POST
+          path: /track
+          cors: true
+
+custom:
+  TrackTable:
+    name: !Ref TrackTable
+    arn: !GetAtt TrackTable.Arn
+  bundle:
+    linting: false
