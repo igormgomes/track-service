@@ -28,6 +28,14 @@ functions:
           path: /track
           cors: true
 
+  getTrackById:
+    handler: src/handlers/getTrackById.handler
+    events:
+      - http:
+          method: GET
+          path: /track/{id}
+          cors: true
+
 custom:
   TrackTable:
     name: !Ref TrackTable

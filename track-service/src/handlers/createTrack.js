@@ -17,7 +17,7 @@ async function createTrack(event, context) {
         id: uuid(),
         order_number: order_number,
         status: 'IN_PREPARATION',
-        delivery_estimate: deliveryEstimate,
+        delivery_estimate: deliveryEstimate.toISOString(),
         create_at: new Date().toISOString()
     };
 

@@ -7,7 +7,7 @@ import httpCors from '@middy/http-cors';
 export default handler => middy(handler)
     .use([
         httpJsonBodyParser(),
-        httpEventNormalizer(),
         httpErrorHandler(),
-        httpCors()
+        httpCors(),
+        httpEventNormalizer(),
     ])

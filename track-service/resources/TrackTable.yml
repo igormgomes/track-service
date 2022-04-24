@@ -13,4 +13,11 @@ TrackTable:
         KeyType: HASH
       - AttributeName: status
         KeyType: RANGE
+    GlobalSecondaryIndexes:
+      - IndexName: track_id
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        Projection:
+          ProjectionType: ALL
   DeletionPolicy: Delete

@@ -8,3 +8,4 @@ TrackTableIAM:
     - dynamodb:Query
   Resource:
     - ${self:custom.TrackTable.arn}
+    - !Join ['/', [ '${self:custom.TrackTable.arn}', 'index', 'track_id' ]]
