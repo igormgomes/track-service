@@ -1,0 +1,6 @@
+TrackSNSIAM:
+  Effect: Allow
+  Action:
+    - sqs:*
+  Resource:
+    - ${self:custom.TrackSNS.arn}

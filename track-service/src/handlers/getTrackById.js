@@ -27,7 +27,7 @@ export async function getTrack(id) {
         throw new createError.InternalServerError(error);
     }
 
-    if (!track) {
+    if (!track || track.length === 0) {
         throw new createError.NotFound(`Track "${id}" not found`);
     }
 

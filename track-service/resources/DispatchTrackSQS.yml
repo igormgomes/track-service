@@ -1,0 +1,4 @@
+DispatchTrackSQS:
+  Type: AWS::SQS::Queue
+  Properties:
+    QueueName: dispatch-track-${self:provider.stage}

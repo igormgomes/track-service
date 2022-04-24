@@ -1,0 +1,9 @@
+TrackSNS:
+  Type: AWS::SNS::Topic
+  Properties:
+    Subscription:
+      - Endpoint: ${self:custom.DispatchTrackSQS.arn}
+        Protocol: sqs
+      - Endpoint: ${self:custom.MailTrackSQS.arn}
+        Protocol: sqs
+    TopicName: track-notify-${self:provider.stage}

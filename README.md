@@ -1,7 +1,7 @@
-Deploy to AWS
+Deploy stack to AWS
 
 ```
-$ c
+$ sls deploy --verbose
 ```
 
 Redeploy just a function
@@ -10,8 +10,14 @@ Redeploy just a function
 $ sls deploy -f functioname --verbose
 ```
 
-See function's logs
+For see function's logs
 
 ```
 $ sls logs -f functioname -t 
+```
+
+Delete stack to AWS
+
+```
+sls remove --verbose
 ```

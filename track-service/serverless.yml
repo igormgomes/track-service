@@ -13,11 +13,16 @@ provider:
   environment:
     TRACK_TABLE_NAME: ${self:custom.TrackTable.name}
   iamRoleStatements:
-    -  ${file(iam/TrackTableIAM.yml):TrackTableIAM}
+    - ${file(iam/TrackTableIAM.yml):TrackTableIAM}
+    - ${file(iam/TrackSQSIAM.yml):TrackSQSIAM}
+    - ${file(iam/TrackSNSIAM.yml):TrackSNSIAM}
 
 resources:
   Resources:
     TrackTable: ${file(resources/TrackTable.yml):TrackTable}
+    DispatchTrackSQS: ${file(resources/DispatchTrackSQS.yml):DispatchTrackSQS}
+    MailTrackSQS: ${file(resources/MailTrackSQS.yml):MailTrackSQS}
+    TrackSNS: ${file(resources/TrackSNS.yml):TrackSNS}
 
 functions:
   createTrack:
@@ -40,5 +45,13 @@ custom:
   TrackTable:
     name: !Ref TrackTable
     arn: !GetAtt TrackTable.Arn
+  DispatchTrackSQS:
+    name: !Ref DispatchTrackSQS
+    arn: !GetAtt DispatchTrackSQS.Arn
+  MailTrackSQS:
+    name: !Ref MailTrackSQS
+    arn: !GetAtt MailTrackSQS.Arn
+  TrackSNS:
+    arn: !Ref TrackSNS
   bundle:
     linting: false
