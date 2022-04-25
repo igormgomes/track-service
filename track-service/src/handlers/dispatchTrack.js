@@ -17,6 +17,8 @@ async function dispatchTrack(event, context) {
             TableName: process.env.TRACK_TABLE_NAME,
             Item: track,
         }).promise();
+
+        console.log(`Track in transit ${track.id}`);
     } catch (error) {
         console.log(error);
     }

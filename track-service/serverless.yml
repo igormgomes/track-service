@@ -13,6 +13,7 @@ provider:
   environment:
     TRACK_TABLE_NAME: ${self:custom.TrackTable.name}
     TRACK_DISPATCH_SQS_NAME: ${self:custom.DispatchTrackSQS.name}
+    TRACK_DISPATCH_SQS_DELAY: 30
   iamRoleStatements:
     - ${file(iam/TrackTableIAM.yml):TrackTableIAM}
     - ${file(iam/TrackSQSIAM.yml):TrackSQSIAM}
@@ -44,6 +45,11 @@ functions:
     events:
       - sqs:
           arn: ${self:custom.DispatchTrackSQS.arn}
+
+  finishTrack:
+    handler: src/handlers/finishTrack.handler
+    events:
+      - schedule: rate(1 minute)
 
 custom:
   TrackTable:

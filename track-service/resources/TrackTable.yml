@@ -20,4 +20,10 @@ TrackTable:
             KeyType: HASH
         Projection:
           ProjectionType: ALL
+      - IndexName: track_status
+        KeySchema:
+          - AttributeName: status
+            KeyType: HASH
+        Projection:
+          ProjectionType: ALL
   DeletionPolicy: Delete

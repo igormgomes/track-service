@@ -33,6 +33,7 @@ async function createTrack(event, context) {
 
         await sqs.sendMessage({
             QueueUrl: process.env.TRACK_DISPATCH_SQS_NAME,
+            DelaySeconds: parseInt(process.env.TRACK_DISPATCH_SQS_DELAY),
             MessageBody: JSON.stringify({
                 id: track.id
             })
