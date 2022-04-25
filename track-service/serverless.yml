@@ -12,17 +12,15 @@ provider:
   region: ${opt:region, 'us-east-1'}
   environment:
     TRACK_TABLE_NAME: ${self:custom.TrackTable.name}
+    TRACK_DISPATCH_SQS_NAME: ${self:custom.DispatchTrackSQS.name}
   iamRoleStatements:
     - ${file(iam/TrackTableIAM.yml):TrackTableIAM}
     - ${file(iam/TrackSQSIAM.yml):TrackSQSIAM}
-    - ${file(iam/TrackSNSIAM.yml):TrackSNSIAM}
 
 resources:
   Resources:
     TrackTable: ${file(resources/TrackTable.yml):TrackTable}
     DispatchTrackSQS: ${file(resources/DispatchTrackSQS.yml):DispatchTrackSQS}
-    MailTrackSQS: ${file(resources/MailTrackSQS.yml):MailTrackSQS}
-    TrackSNS: ${file(resources/TrackSNS.yml):TrackSNS}
 
 functions:
   createTrack:
@@ -41,6 +39,12 @@ functions:
           path: /track/{id}
           cors: true
 
+  dispatchTrack:
+    handler: src/handlers/dispatchTrack.handler
+    events:
+      - sqs:
+          arn: ${self:custom.DispatchTrackSQS.arn}
+
 custom:
   TrackTable:
     name: !Ref TrackTable
@@ -48,10 +52,5 @@ custom:
   DispatchTrackSQS:
     name: !Ref DispatchTrackSQS
     arn: !GetAtt DispatchTrackSQS.Arn
-  MailTrackSQS:
-    name: !Ref MailTrackSQS
-    arn: !GetAtt MailTrackSQS.Arn
-  TrackSNS:
-    arn: !Ref TrackSNS
   bundle:
     linting: false

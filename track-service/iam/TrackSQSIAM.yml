@@ -4,4 +4,3 @@ TrackSQSIAM:
     - sqs:*
   Resource:
     - ${self:custom.DispatchTrackSQS.arn}
-    - ${self:custom.MailTrackSQS.arn}

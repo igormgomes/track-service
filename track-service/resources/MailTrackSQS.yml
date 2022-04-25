@@ -1,4 +1,0 @@
-MailTrackSQS:
-  Type: AWS::SQS::Queue
-  Properties:
-    QueueName: mail-track-${self:provider.stage}

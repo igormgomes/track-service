@@ -5,6 +5,31 @@ import commonRest from "../util/commonRest";
 
 const dynamodb = new AWS.DynamoDB.DocumentClient()
 
+export async function getTrackAndStatus(id, status) {
+    let track;
+
+    try {
+        const result = await dynamodb.get({
+            TableName: process.env.TRACK_TABLE_NAME,
+            Key: {
+                id: id,
+                status: status
+            }
+        }).promise();
+
+        track = result.Item;
+    } catch (error) {
+        console.log(error);
+        throw new createError.InternalServerError(error);
+    }
+
+    if (!track) {
+        throw new createError.NotFound(`Track "${id}" not found`);
+    }
+
+    return track;
+}
+
 export async function getTrack(id) {
     let track;
 
