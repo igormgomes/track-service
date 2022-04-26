@@ -1,0 +1,14 @@
+{
+  "name": "auth-service",
+  "version": "1.0.0",
+  "author": "Igor Gomes",
+  "description": "Example with auth0",
+  "license": "MIT",
+  "dependencies": {
+    "jsonwebtoken": "^8.1.0"
+  },
+  "devDependencies": {
+    "serverless-bundle": "^5.3.0",
+    "webpack": "^5.41.1"
+  }
+}
