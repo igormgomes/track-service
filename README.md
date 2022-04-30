@@ -1,3 +1,7 @@
+# Architeture #
+
+![image info](./draw.png)
+
 Deploy stack to AWS
 ```
 $ sls deploy --verbose
