@@ -1,3 +1,7 @@
+## Serverless Framework
+
+This application was developed using [Serverless Framework](https://www.serverless.com/).
+
 <p align="center">
   <img src="https://codingly-assets.s3-eu-west-1.amazonaws.com/Codingly+Logo.png" width="200px" height="200px"/>
   </br>
@@ -5,12 +9,13 @@
   <br/>
 </p>
 
-## Serverless Framework
+# Architecture #
 
-This application was developed using [Serverless Framework](https://www.serverless.com/).
-
-
-# Architeture #
+<br/>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/igormgomes/track-service/master/aws.png">
+</p>
+<br/>
 
 ![image info](./draw.png)
 
