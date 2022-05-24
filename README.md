@@ -9,15 +9,9 @@ This application was developed using [Serverless Framework](https://www.serverle
   <br/>
 </p>
 
-# Architecture #
+# Project Overview:
 
-<br/>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/igormgomes/track-service/master/aws.png">
-</p>
-<br/>
-
-![image info](./draw.png)
+![image info](assets/draw.jpg)
 
 Deploy stack to AWS
 ```
